@@ -80,7 +80,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
             <TextBlock Text="APP" Background="Blue" Foreground="White" FontWeight="Bold" Padding="5" />
             <Border BorderBrush="Blue" BorderThickness="2">
-                <TextBlock Text="0.0.1" VerticalAlignment="Center" Padding="5,0" />
+                <TextBlock Text="0.0.2" VerticalAlignment="Center" Padding="5,0" />
             </Border>
             <Border Width="5" />
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -54,10 +55,10 @@ namespace avifencodergui.lib
             switch (job.Operation)
             {
                 case Job.OperationEnum.Encode:
-                    targetFilePath = $"{Path.Combine(new FileInfo(job.FilePath).DirectoryName, job.FileName)}.avif";
+                    GetOutputPath(job, "avif", "AvifImgs", out targetFilePath);
                     break;
                 case Job.OperationEnum.Decode:
-                    targetFilePath = $"{Path.Combine(new FileInfo(job.FilePath).DirectoryName, job.FileName)}.png";
+                    GetOutputPath(job, "png", "ConvertedImgs", out targetFilePath);
                     break;
                 default:
                     throw new Exception($"{job.Operation} should be Encode or Decode");
@@ -74,6 +75,33 @@ namespace avifencodergui.lib
                 default:
                     throw new Exception($"{job.Operation} should be Encode or Decode");
             }
+        }
+
+        private static void GetOutputPath(Job job, string fileFormat, string outputFolder, out string targetFilePath)
+        {
+            string[] _temp = job.FilePath.Split('\\');
+            string[] temp = _temp[^1].Split('.');
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (i != temp.Length - 1)
+                {
+                    sb.Append(temp[i]);
+                    sb.Append('.');
+                }
+            }
+
+            string fileName = sb.ToString() + fileFormat;
+            string outputFolderPath = new FileInfo(job.FilePath).DirectoryName + "\\" + outputFolder;
+
+            if (!Directory.Exists(outputFolderPath))
+            {
+                Directory.CreateDirectory(outputFolderPath);
+            }
+
+            targetFilePath = outputFolderPath + "\\" + fileName;
+            Debug.WriteLine(outputFolderPath);
         }
 
         private static string GetFileName(Job job)
