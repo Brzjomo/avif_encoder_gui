@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:avifencodergui.wpf.ViewModels"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:converter="clr-namespace:avifencodergui.wpf.Converter"
         mc:Ignorable="d"
         Title="AVIF Encoder" Height="369" Width="600">
@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="PREVIEW! Expect nothing!" />
+        <!--<textblock text="预览版!" />-->
 
         <Border Grid.Row="0" Drop="Border_Drop" AllowDrop="True" DragOver="Border_DragOver" BorderBrush="Gray"
                 Background="Beige"
@@ -42,8 +42,8 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock IsHitTestVisible="False"
                            TextAlignment="Center"
-                           Text="Drop jpg, jpeg, png, y4m or avif file here" />
-                <TextBlock Text="Need AVIF encoder, click 'Download AVIF' and restart!"
+                           Text="拖动 jpg, jpeg, png, y4m 或 avif 文件至此" />
+                <TextBlock Text="需要 AVIF 解码器, 点击 '下载 AVIF' 并重启!"
                            FontWeight="Bold"
                            Foreground="Red"
                            TextAlignment="Center"
@@ -51,7 +51,7 @@
             </StackPanel>
         </Border>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Jobs}" Margin="20,0,20,20">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Jobs}" Margin="20,0,20,20" MaxHeight="40px">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True" />
@@ -80,7 +80,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
             <TextBlock Text="APP" Background="Blue" Foreground="White" FontWeight="Bold" Padding="5" />
             <Border BorderBrush="Blue" BorderThickness="2">
-                <TextBlock Text="0.0.0" VerticalAlignment="Center" Padding="5,0" />
+                <TextBlock Text="0.0.1" VerticalAlignment="Center" Padding="5,0" />
             </Border>
             <Border Width="5" />
 
@@ -96,9 +96,9 @@
             </Border>
             <Border Width="5" />
 
-            <Button Content="Download AVIF" Margin="2" FontSize="10" Padding="5,0"
+            <Button Content="下载 AVIF" Margin="2" FontSize="10" Padding="5,0"
                     Command="{Binding OpenEncoderInstallWikiCommand}" />
-            <Button Content="Settings" Margin="2" FontSize="10" Padding="5,0" Command="{Binding ShowSettingsCommand}" />
+            <Button Content="设置" Margin="2" FontSize="10" Padding="5,0" Command="{Binding ShowSettingsCommand}" />
         </StackPanel>
     </Grid>
 </Window>

@@ -11,8 +11,8 @@ namespace avifencodergui.lib
 
         public static string[] Extensions = ExtensionsEncode.Concat(ExtensionsDecode).ToArray();
 
-        public static string AppFolder =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "avifencodergui");
+        // public static string AppFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "avifencodergui");
+        public static string AppFolder = "codec";
 
         public static string DecoderFilePath => Path.Combine(AppFolder, "avifdec.exe");
         public static string EncoderFilePath => Path.Combine(AppFolder, "avifenc.exe");
